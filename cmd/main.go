@@ -26,6 +26,14 @@ func main() {
 	}
 
 	fmt.Printf("%+v\n", data)
+
+	data1, err := readJSON("../data/todos.json")
+	if err != nil {
+		fmt.Println("Failed to read JSON: ", err)
+	}
+
+	data1.finish(0)
+	fmt.Printf("%+v\n", data1)
 }
 
 func init() {

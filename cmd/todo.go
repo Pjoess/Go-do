@@ -34,6 +34,17 @@ func (todos *Todos) delete(index int) error {
 	// do functionality of deleting the todo
 	*todos = append(t[:index], t[index+1:]...)
 
+	return nil
+}
+
+func (todos *Todos) finish(index int) error {
+	t := *todos
+
+	if err := t.checkIndex(index); err != nil {
+		return err
+	}
+	isCompleted := t[index].Completed
+	t[index].Completed = !isCompleted
 
 	return nil
 }
