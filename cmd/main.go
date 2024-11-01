@@ -5,13 +5,17 @@ import (
 )
 
 func main() {
+	// if !checkFileExists("../data/todos.json") {
+	// 	os.MkdirAll("../data/", 0700)
+	// 	os.NewFile("../data/",)
+	// }
 	data, err := readJSON("../data/todos.json")
 	if err != nil {
 		fmt.Println("Failed to read JSON: ", err)
 		return
 	}
 	newFlags(&data)
-	
+
 	// getFlagData(data)
 
 	// displayTodos(data)
@@ -31,8 +35,6 @@ func displayTodos(todo Todos) {
 }
 
 // func getFlagData(todo Todos) {
-
-
 
 // 	flag.Parse()
 
