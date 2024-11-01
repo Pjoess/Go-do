@@ -10,10 +10,11 @@ func main() {
 		fmt.Println("Failed to read JSON: ", err)
 		return
 	}
-	newFlags()
+	newFlags(&data)
+	
 	// getFlagData(data)
 
-	displayTodos(data)
+	// displayTodos(data)
 }
 
 func displayTodos(todo Todos) {
@@ -31,13 +32,7 @@ func displayTodos(todo Todos) {
 
 // func getFlagData(todo Todos) {
 
-// 	flag.Usage = func() {
-// 		fmt.Println("Usage of this program:")
-// 		fmt.Println("  -t string")
-// 		fmt.Println("        Title of the todo item (default \"Default Title\")")
-// 		fmt.Println("  -c")
-// 		fmt.Println("        Completion status of the todo item (default false)")
-// 	}
+
 
 // 	flag.Parse()
 
