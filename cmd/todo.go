@@ -44,10 +44,11 @@ func (todos *Todos) finish(index int) error {
 	if err := t.checkIndex(index); err != nil {
 		return err
 	}
-	isCompleted := t[index].Completed
-	t[index].Completed = !isCompleted
+	fmt.Println("index checked")
+	isCompleted := t[index-1].Completed
+	t[index-1].Completed = !isCompleted
 
-	writeJSON("../data/todos.json", *todos)
+	writeJSON("../data/todos.json", t)
 	return nil
 }
 

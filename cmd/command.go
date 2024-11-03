@@ -52,6 +52,7 @@ func (fl *Flags) Execute(todos *Todos) {
 	case fl.Delete >= 0:
 		todos.delete(fl.Delete)
 	case fl.Complete >= 0:
+		fmt.Println("gone into complete case")
 		todos.finish(fl.Complete)
 	default:
 		err := errors.New("invalid flag used, try -help")

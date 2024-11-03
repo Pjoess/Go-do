@@ -6,13 +6,6 @@ import (
 )
 
 func readJSON(filename string) (Todos, error) {
-
-	file, err := os.OpenFile(filename, os.O_RDONLY|os.O_CREATE, 0644)
-	if err != nil {
-		return nil, err
-	}
-	file.Close()
-
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		return nil, err
