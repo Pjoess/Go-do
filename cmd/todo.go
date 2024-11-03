@@ -22,6 +22,7 @@ func (todos *Todos) add(title string) {
 	}
 
 	*todos = append(*todos, todo)
+	writeJSON("../data/todos.json", *todos)
 }
 
 func (todos *Todos) delete(index int) error {
@@ -33,6 +34,7 @@ func (todos *Todos) delete(index int) error {
 
 	// do functionality of deleting the todo
 	*todos = append(t[:index], t[index+1:]...)
+	writeJSON("../data/todos.json", t)
 
 	return nil
 }
@@ -44,9 +46,10 @@ func (todos *Todos) finish(index int) error {
 		return err
 	}
 	fmt.Println("index checked")
-	isCompleted := t[index-1].Completed
-	t[index-1].Completed = !isCompleted
+	isCompleted := t[index].Completed
+	t[index].Completed = !isCompleted
 
+	writeJSON("../data/todos.json", t)
 	return nil
 }
 

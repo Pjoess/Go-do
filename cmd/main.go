@@ -14,10 +14,10 @@ func main() {
 		fmt.Println("Failed to read JSON: ", err)
 		return
 	}
-	newFlags()
+	newFlags(&data)
 	// getFlagData(data)
 
-	displayTodos(data)
+	// displayTodos(data)
 }
 
 func displayTodos(todo Todos) {
