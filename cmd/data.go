@@ -2,29 +2,54 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"io"
 	"os"
+	"path/filepath"
 )
 
-func readJSON(filename string) (Todos, error) {
-	data, err := os.ReadFile(filename)
+func getFilepath() (string, error) {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		fmt.Println("Error finding home folder: ", err)
+		return "", err
+	}
+	dir := filepath.Join(home, ".config", "godo", "todo.json")
+	return dir, nil
+}
+
+func readJSON() (Todos, error) {
+	dir, err := getFilepath()
 	if err != nil {
 		return nil, err
 	}
 
+	data, err := os.Open(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	defer data.Close()
+	bytedata, _ := io.ReadAll(data)
 	var todos Todos
-	err = json.Unmarshal(data, &todos)
+	err = json.Unmarshal(bytedata, &todos)
 	return todos, err
 
 }
 
-func writeJSON(filename string, todos Todos) error {
+func writeJSON(todos Todos) error {
 	// add todo to the json file
+	dir, err := getFilepath()
+	if err != nil {
+		return err
+	}
+
 	data, err := json.Marshal(todos)
 	if err != nil {
 		return err
 	}
 
-	file, err := os.Create(filename)
+	file, err := os.Create(dir)
 	if err != nil {
 		return err
 	}

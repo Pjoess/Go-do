@@ -9,7 +9,8 @@ func main() {
 	// 	os.MkdirAll("../data/", 0700)
 	// 	os.NewFile("../data/",)
 	// }
-	data, err := readJSON("../data/todos.json")
+	data, err := readJSON()
+	// data, err := readJSON("$HOME/.config/godo/todo.json")
 	if err != nil {
 		fmt.Println("Failed to read JSON: ", err)
 		return
