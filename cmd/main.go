@@ -22,15 +22,21 @@ func main() {
 }
 
 func displayTodos(todo Todos) {
-	fmt.Println("Todo list:")
+	var Reset = "\033[0m"
+	var Red = "\033[31m"
+	var Green = "\033[32m"
+	var Cyan = "\033[36m"
+	var Yellow = "\033[33m"
+
+	fmt.Println(Yellow + "Todo list:" + Reset)
 	for i := range todo {
 		status := " "
 		if todo[i].Completed {
-			status = "✓"
+			status = Green + "✓" + Reset
 		} else {
-			status = "✗"
+			status = Red + "✗" + Reset
 		}
-		fmt.Printf("[%d] %s [%s]\n", i, todo[i].Title, status)
+		fmt.Printf(Cyan+"[%d] "+Reset+"%s [%s]\n", i, todo[i].Title, status)
 	}
 }
 
