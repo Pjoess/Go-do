@@ -10,7 +10,6 @@ type Flags struct {
 	Delete   int
 	Complete int
 	List     bool
-	Nil      bool
 }
 
 func newFlags(todos *Todos) {
@@ -20,7 +19,6 @@ func newFlags(todos *Todos) {
 	flag.IntVar(&fl.Delete, "delete", -1, "Remove a todo, specify index")
 	flag.IntVar(&fl.Complete, "complete", -1, "Complete a todo, specify index")
 	flag.BoolVar(&fl.List, "list", false, "List all todo's")
-	flag.BoolVar(&fl.Nil, "", false, "List all todo's")
 
 	flag.Parse()
 	fl.Execute(todos)
@@ -30,8 +28,6 @@ func (fl *Flags) Execute(todos *Todos) {
 	todo := *todos
 
 	switch {
-	case fl.Nil:
-		displayTodos(todo)
 	case fl.List:
 		displayTodos(todo)
 	case fl.Add != "":
